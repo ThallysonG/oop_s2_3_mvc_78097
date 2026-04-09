@@ -1,0 +1,40 @@
+﻿@model VgcCollege.Web.Models.CourseEnrolment
+
+@{
+    ViewData["Title"] = "Enrolment Details";
+}
+
+<h1>Enrolment Details</h1>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Student</dt>
+    <dd class="col-sm-10">@Model.StudentProfile?.Name</dd>
+
+    <dt class="col-sm-2">Course</dt>
+    <dd class="col-sm-10">@Model.Course?.Name</dd>
+
+    <dt class="col-sm-2">Branch</dt>
+    <dd class="col-sm-10">@Model.Course?.Branch?.Name</dd>
+
+    <dt class="col-sm-2">Enrol Date</dt>
+    <dd class="col-sm-10">@Model.EnrolDate.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">Status</dt>
+    <dd class="col-sm-10">@Model.Status</dd>
+</dl>
+
+@if (User.IsInRole("Administrator"))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+}
+
+@if (User.IsInRole("Student"))
+{
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>
+}
+else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+}

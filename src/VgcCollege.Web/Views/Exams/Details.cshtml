@@ -1,0 +1,36 @@
+﻿@model VgcCollege.Web.Models.Exam
+
+@{
+    ViewData["Title"] = "Exam Details";
+}
+
+<h1>Exam Details</h1>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Title</dt>
+    <dd class="col-sm-10">@Model.Title</dd>
+
+    <dt class="col-sm-2">Course</dt>
+    <dd class="col-sm-10">@Model.Course?.Name</dd>
+
+    <dt class="col-sm-2">Branch</dt>
+    <dd class="col-sm-10">@Model.Course?.Branch?.Name</dd>
+
+    <dt class="col-sm-2">Date</dt>
+    <dd class="col-sm-10">@Model.Date.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-2">Max Score</dt>
+    <dd class="col-sm-10">@Model.MaxScore</dd>
+
+    <dt class="col-sm-2">Results Released</dt>
+    <dd class="col-sm-10">@(Model.ResultsReleased ? "Yes" : "No")</dd>
+</dl>
+
+@if (User.IsInRole("Administrator") || User.IsInRole("Faculty"))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>

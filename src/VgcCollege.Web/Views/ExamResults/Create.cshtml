@@ -1,0 +1,48 @@
+﻿@model VgcCollege.Web.Models.ExamResult
+
+@{
+    ViewData["Title"] = "Create Exam Result";
+}
+
+<h1>Create Exam Result</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="ExamId" class="form-label"></label>
+                <select asp-for="ExamId" asp-items="ViewBag.ExamId" class="form-select">
+                    <option value="">-- Select Exam --</option>
+                </select>
+                <span asp-validation-for="ExamId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StudentProfileId" class="form-label"></label>
+                <select asp-for="StudentProfileId" asp-items="ViewBag.StudentProfileId" class="form-select">
+                    <option value="">-- Select Student --</option>
+                </select>
+                <span asp-validation-for="StudentProfileId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Score" class="form-label"></label>
+                <input asp-for="Score" class="form-control" />
+                <span asp-validation-for="Score" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Grade" class="form-label"></label>
+                <input asp-for="Grade" class="form-control" />
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>

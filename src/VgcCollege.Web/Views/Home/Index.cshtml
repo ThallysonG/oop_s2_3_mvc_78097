@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">VGC College Management System</h1>
+    <p>Welcome to the VGC College system.</p>
+
+    <p>
+        <a class="btn btn-primary" asp-controller="Branches" asp-action="Index">Go to Branches</a>
+        <a class="btn btn-info" asp-controller="Courses" asp-action="Index">Go to Courses</a>
+
+        @if (User.IsInRole("Administrator") || User.IsInRole("Faculty"))
+        {
+            <a class="btn btn-success" asp-controller="StudentProfiles" asp-action="Index">Go to Student Profiles</a>
+            <a class="btn btn-warning" asp-controller="CourseEnrolments" asp-action="Index">Go to Enrolments</a>
+            <a class="btn btn-dark" asp-controller="AttendanceRecords" asp-action="Index">Go to Attendance</a>
+            <a class="btn btn-secondary" asp-controller="Assignments" asp-action="Index">Go to Assignments</a>
+            <a class="btn btn-danger" asp-controller="AssignmentResults" asp-action="Index">Go to Assignment Results</a>
+            <a class="btn btn-outline-primary" asp-controller="Exams" asp-action="Index">Go to Exams</a>
+            <a class="btn btn-outline-danger" asp-controller="ExamResults" asp-action="Index">Go to Exam Results</a>
+        }
+
+        @if (User.IsInRole("Student"))
+        {
+            <a class="btn btn-success" asp-controller="StudentProfiles" asp-action="MyProfile">My Profile</a>
+            <a class="btn btn-warning" asp-controller="CourseEnrolments" asp-action="MyEnrolments">My Enrolments</a>
+            <a class="btn btn-dark" asp-controller="AttendanceRecords" asp-action="MyAttendance">My Attendance</a>
+            <a class="btn btn-danger" asp-controller="AssignmentResults" asp-action="MyResults">My Assignment Results</a>
+            <a class="btn btn-outline-danger" asp-controller="ExamResults" asp-action="MyResults">My Exam Results</a>
+        }
+    </p>
+
+
+</div>

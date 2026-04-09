@@ -1,0 +1,48 @@
+﻿@model VgcCollege.Web.Models.AssignmentResult
+
+@{
+    ViewData["Title"] = "Create Assignment Result";
+}
+
+<h1>Create Assignment Result</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="AssignmentId" class="form-label"></label>
+                <select asp-for="AssignmentId" asp-items="ViewBag.AssignmentId" class="form-select">
+                    <option value="">-- Select Assignment --</option>
+                </select>
+                <span asp-validation-for="AssignmentId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StudentProfileId" class="form-label"></label>
+                <select asp-for="StudentProfileId" asp-items="ViewBag.StudentProfileId" class="form-select">
+                    <option value="">-- Select Student --</option>
+                </select>
+                <span asp-validation-for="StudentProfileId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Score" class="form-label"></label>
+                <input asp-for="Score" class="form-control" />
+                <span asp-validation-for="Score" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Feedback" class="form-label"></label>
+                <textarea asp-for="Feedback" class="form-control"></textarea>
+                <span asp-validation-for="Feedback" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>

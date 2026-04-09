@@ -1,0 +1,49 @@
+﻿@model VgcCollege.Web.Models.CourseEnrolment
+
+@{
+    ViewData["Title"] = "Edit Enrolment";
+}
+
+<h1>Edit Enrolment</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="StudentProfileId" class="form-label"></label>
+                <select asp-for="StudentProfileId" asp-items="ViewBag.StudentProfileId" class="form-select"></select>
+                <span asp-validation-for="StudentProfileId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CourseId" class="form-label"></label>
+                <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-select"></select>
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="EnrolDate" class="form-label"></label>
+                <input asp-for="EnrolDate" type="date" class="form-control" />
+                <span asp-validation-for="EnrolDate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status" class="form-select">
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Withdrawn">Withdrawn</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>

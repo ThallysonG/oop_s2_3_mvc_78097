@@ -1,0 +1,54 @@
+﻿@model IEnumerable<VgcCollege.Web.Models.ExamResult>
+
+@{
+    ViewData["Title"] = "Exam Results";
+}
+
+<h1>Exam Results</h1>
+
+@if (User.IsInRole("Administrator") || User.IsInRole("Faculty"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Exam Result</a>
+    </p>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Exam</th>
+            <th>Course</th>
+            <th>Score</th>
+            <th>Grade</th>
+            <th>Released</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StudentProfile?.Name</td>
+                <td>@item.Exam?.Title</td>
+                <td>@item.Exam?.Course?.Name</td>
+                <td>@item.Score</td>
+                <td>@item.Grade</td>
+                <td>@(item.Exam?.ResultsReleased == true ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Faculty"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    }
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

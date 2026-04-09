@@ -1,0 +1,23 @@
+﻿@model VgcCollege.Web.Models.Branch
+
+@{
+    ViewData["Title"] = "Branch Details";
+}
+
+<h1>Branch Details</h1>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Name</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">Address</dt>
+    <dd class="col-sm-10">@Model.Address</dd>
+</dl>
+
+@if (User.IsInRole("Administrator"))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+}
+<a asp-action="Index" class="btn btn-secondary">Back</a>

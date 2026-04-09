@@ -1,0 +1,37 @@
+﻿@model IEnumerable<VgcCollege.Web.Models.ExamResult>
+
+@{
+    ViewData["Title"] = "My Exam Results";
+}
+
+<h1>My Exam Results</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Exam</th>
+            <th>Course</th>
+            <th>Branch</th>
+            <th>Score</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Exam?.Title</td>
+                <td>@item.Exam?.Course?.Name</td>
+                <td>@item.Exam?.Course?.Branch?.Name</td>
+                <td>@item.Score</td>
+                <td>@item.Grade</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
