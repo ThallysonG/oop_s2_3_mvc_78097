@@ -35,7 +35,24 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+
+            @{
+                var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+                var isHomePage =
+                string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(currentAction, "Index", StringComparison.OrdinalIgnoreCase);
+            }
+
+            @if (!isHomePage)
+            {
+                <div class="mt-4">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
+                </div>
+            }
         </main>
+
     </div>
 
     <footer class="border-top footer text-muted">
