@@ -30,18 +30,30 @@ namespace VgcCollege.Tests.Services
                 UserName = "student1@vgc.com"
             };
 
-            var student = new StudentProfile
+            var branch = new Branch
             {
                 Id = 1,
-                IdentityUserId = user.Id,
-                Name = "Student One",
-                User = user
+                Name = "Dublin Branch",
+                Address = "Main Street"
             };
 
             var course = new Course
             {
                 Id = 1,
-                Name = "Software Development"
+                Name = "Software Development",
+                BranchId = 1,
+                Branch = branch,
+                StartDate = new DateTime(2026, 1, 1),
+                EndDate = new DateTime(2026, 6, 1)
+            };
+
+            var student = new StudentProfile
+            {
+                Id = 1,
+                IdentityUserId = user.Id,
+                Name = "Student One",
+                Email = user.Email,
+                User = user
             };
 
             var releasedExam = new Exam
@@ -50,6 +62,8 @@ namespace VgcCollege.Tests.Services
                 Title = "Released Exam",
                 CourseId = 1,
                 Course = course,
+                Date = new DateTime(2026, 5, 1),
+                MaxScore = 100,
                 ResultsReleased = true
             };
 
@@ -59,9 +73,14 @@ namespace VgcCollege.Tests.Services
                 Title = "Hidden Exam",
                 CourseId = 1,
                 Course = course,
+                Date = new DateTime(2026, 5, 15),
+                MaxScore = 100,
                 ResultsReleased = false
             };
 
+            context.Users.Add(user);
+            context.Branches.Add(branch);
+            context.Courses.Add(course);
             context.StudentProfiles.Add(student);
             context.Exams.AddRange(releasedExam, hiddenExam);
 
